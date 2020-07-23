@@ -1,0 +1,31 @@
+{{ $data := index site.Data site.Language.Lang }}
+
+{{ if $data.sponsors.sponsors.enable }}
+{{ with $data.sponsors.sponsors }}
+{{"<!-- sponsors -->" | safeHTML}}
+<section class="portfolio section" id="portfolio">
+	<div class="container">
+		<div class="row ">
+			<div class="col-xl-12">
+				{{"<!-- section title -->" | safeHTML}}
+				<div class="title text-center">
+					<h2>{{ with .title }} {{ index (split . " ") 0 | safeHTML }} {{ end }}<span class="color">
+							{{ with .title }} {{ index (split . " ") 1 | safeHTML }} {{ end }}</span></h2>
+					<div class="border-meghna"></div>
+				</div>
+				{{"<!-- /section title -->" | safeHTML}}
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-12 padding-0" style="background-image: url('{{ .image_webp | absURL }}'); background-size: cover; background-position: top center; background-repeat: no-repeat; min-height: 600px;">
+				<!-- this image is for trigger this section fallback background image -->
+				<img class="lozad" style="display: none;" onerror="this.onerror=null;this.parentElement.style.backgroundImage= 'url({{ .image | absURL }})'" data-src="{{ .image_webp | absURL }}" />
+			</div>
+		</div>
+		</div>
+	</div>
+</section>
+{{"<!-- /sponsors -->" | safeHTML}}
+{{ end }}
+{{ end }}
